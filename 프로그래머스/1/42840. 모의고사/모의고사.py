@@ -1,30 +1,20 @@
 def solution(answers):
-    # 각 수포자의 패턴 정의
-    p1 = [1, 2, 3, 4, 5]
-    p2 = [2, 1, 2, 3, 2, 4, 2, 5]
-    p3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    
+    p=[[1, 2, 3, 4, 5],[2, 1, 2, 3, 2, 4, 2, 5],[3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
     
     # 정답 리스트 길이
     n = len(answers)
+    scores=[0,0,0]
+    for i in range (n): #~번째 행에 있는 숫자들과 answer
+        for j in range(len(p)):
+            if(answers[i]==p[j][i%len(p[j])]):
+                       scores[j]+=1
     
-    # 정답 패턴을 문제 길이만큼 반복
-    p1_a = (p1 * (n // len(p1))) + p1[:n % len(p1)]
-    p2_a = (p2 * (n // len(p2))) + p2[:n % len(p2)]
-    p3_a = (p3 * (n // len(p3))) + p3[:n % len(p3)]
-
-    # 정답 비교 (맞힌 개수 계산)
-    num1 = sum([1 for i in range(n) if p1_a[i] == answers[i]])
-    num2 = sum([1 for i in range(n) if p2_a[i] == answers[i]])
-    num3 = sum([1 for i in range(n) if p3_a[i] == answers[i]])
-
-    # 가장 많이 맞힌 사람 찾기
-    max_score = max(num1, num2, num3)
-    result = []
-    if num1 == max_score:
-        result.append(1)
-    if num2 == max_score:
-        result.append(2)
-    if num3 == max_score:
-        result.append(3)
-
-    return result
+    max_score = max(scores)
+    
+    highest_scores=[]
+    for i,score in enumerate(scores):
+        if score==max_score:
+            highest_scores.append(i+1)
+    return highest_scores
+   
