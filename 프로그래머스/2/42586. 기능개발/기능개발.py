@@ -8,14 +8,14 @@ def solution(progresses, speeds):
     while progresses:
         for i in range(len(progresses)):
             progresses[i] += speeds[i]
-
-        num = 0
+            
+            cnt = 0
+        
         while progresses and progresses[0] >= 100:
+            cnt += 1
             progresses.popleft()
             speeds.popleft()
-            num += 1
-
-        if num > 0:
-            answer.append(num)
-
+        if cnt > 0:
+            answer.append(cnt)
+        
     return answer
