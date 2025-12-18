@@ -1,15 +1,29 @@
 def solution(participant, completion):
-    dic = { }
+    #hashp
+    #participant 모든 사람 false 해시
+    #completion 사람 true
+    hashDict = {}
+    sumHash = 0
+    #1. participant list의 hash를 구하고, hash 값 더하기
+    for part in participant:
+        hashDict[hash(part)] = part
+        sumHash += hash(part)
+    #2. completion list의 hash를 빼준다
+    for comp in completion:
+        sumHash -= hash(comp)
+    #3. 남은 값이 hash가 됨
+    answer = hashDict[sumHash]
+    return answer
+        
     
-    for p in participant:
-        if p in dic:
-            dic[p] += 1
-        else:
-            dic[p] = 1
+#     answer = ''
+#     return answer
+#sorting
+# def solution(participant, completion):
+#     participant.sort()
+#     completion.sort()
     
-    for c in completion:
-        dic[c] -= 1
-    
-    for key in dic.keys():
-        if dic[key] > 0:
-            return key
+#     for i in range(len(completion)):
+#         if participant[i] != completion[i]:
+#             return participant[i]
+#     return participant[(len(participant)-1)]
