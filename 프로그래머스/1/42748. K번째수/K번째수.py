@@ -5,8 +5,7 @@ def solution(array, commands):
         i = commands[c][0]
         j = commands[c][1]
         k = commands[c][2]
-        #sliced = array[i-1:j].sort()
-        #TypeError: 'NoneType' object is not subscriptable
+        
         sliced = array[i-1:j]
         sliced.sort()
         
